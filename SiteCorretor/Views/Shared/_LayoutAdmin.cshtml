@@ -1,0 +1,196 @@
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Painel Administrativo</title>
+    <link rel="shortcut icon" href="~/assets/img/favicon/image_tile_20x20.png">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="~/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    @*<link rel="stylesheet" href="~/AdminLTE/plugins/jqvmap/jqvmap.min.css">*@
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/AdminLTE/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/AdminLTE/plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+
+
+            </ul>
+            <!-- SEARCH FORM -->
+            @*<form class="form-inline ml-3">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>*@
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!--INÍCIO DO MENU USUÁRIO - CANTO SUPERIOR DIREITO-->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="hidden-xs">Bem Vindo: @User.Identity.Name</span>
+                    </a>
+                    <ul class="dropdown-menu" style="width: 190px !important;">
+                        <li class="user-footer">
+                            <div class="pull-right">
+                                <a asp-action="Logout" asp-controller="Home" asp-area="Admin" class="btn btn-default btn-flat">Sair</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+                <span class="brand-text font-weight-light">Bahia</span>
+            </a>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                        @*------------------------------------------------------------------ INÍCIO MENU SESC ---------------------------------------------------*@
+                        <li class="nav-item has-treeview menu-open">
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Painel Administrativo
+                                    <i class="right fas fa-angle"></i>
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Residencia" asp-action="Index" class="nav-link">
+                                <i class="nav-icon far fa-building"></i>
+                                <p>
+                                    Residencias
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Usuario" asp-action="Index" class="nav-link">
+                                <i class="nav-icon far fa-user"></i>
+                                <p>
+                                    Usuários
+                                </p>
+                            </a>
+                        </li>
+                        @*------------------------------------------------------------------ FINAL MENU SESC ---------------------------------------------------*@
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; @DateTime.Now.Year <a href="http://sescbahia.com.br">Sesc Bahia</a>.</strong>
+            Todos os direitos reservados - Equipe Astin.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Versão</b> 1.0
+            </div>
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/AdminLTE/plugins/jquery/jquery.min.js"></script>
+    <script src="~/js/dataTables/jquery-3.3.1.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    @*<script src="~/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/AdminLTE/plugins/bootstrap/js/bootstrap.min.js"></script>*@
+    <!-- ChartJS -->
+    <script src="~/AdminLTE/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    @*<script src="~/AdminLTE/plugins/sparklines/sparkline.js"></script>*@
+    <!-- JQVMap -->
+    @*<script src="~/AdminLTE/plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="~/AdminLTE/plugins/jqvmap/maps/jquery.vmap.world.js"></script>*@
+    <!-- jQuery Knob Chart -->
+    @*<script src="~/AdminLTE/plugins/jquery-knob/jquery.knob.min.js"></script>*@
+    <!-- daterangepicker -->
+    <script src="~/AdminLTE/plugins/moment/moment.min.js"></script>
+    @*<script src="~/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>*@
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    @*<script src="~/AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>*@
+    <!-- overlayScrollbars -->
+    @*<script src="~/AdminLTE/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>*@
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE/dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    @*<script src="~/AdminLTE/dist/js/pages/dashboard.js"></script>*@
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/AdminLTE/dist/js/demo.js"></script>
+    <script src="~/AdminLTE/plugins/flot/jquery.flot.js"></script>
+    @*<script src="~/AdminLTE/plugins/flot-old/jquery.flot.resize.min.js"></script>*@
+    @*<script src="~/AdminLTE/plugins/flot-old/jquery.flot.pie.min.js"></script>*@
+
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -20,6 +20,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Imagens\" />
     <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\itens\" />
   </ItemGroup>
 
 </Project>

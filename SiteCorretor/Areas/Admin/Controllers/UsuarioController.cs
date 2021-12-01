@@ -11,12 +11,15 @@ namespace SiteCorretor.Areas.Admin.Controllers
     public class UsuarioController : AdminController
     {
         Md5Hash md5;
-        //private SiteCorretorDbContext db = new SiteCorretorDbContext();
-        private readonly SiteCorretorDbContext db;
+        private readonly SiteCorretorDbContext _db;
+        public UsuarioController(SiteCorretorDbContext db)
+        {
+            _db = db;
+        }
         // GET: Usuario
         public IActionResult Index()
         {
-            return View(db.Usuarios.ToList());
+            return View(_db.Usuarios.ToList());
         }
 
 
@@ -37,7 +40,8 @@ namespace SiteCorretor.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 usuario.Senha = md5.CalculateMD5Hash(usuario.Senha);
-                db.Usuarios.Add(usuario);
+                _db.Usuarios.Add(usuario);
+                _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             return View(usuario);
@@ -46,7 +50,7 @@ namespace SiteCorretor.Areas.Admin.Controllers
         // GET: Usuario/Edit/5
         public IActionResult Edit(int id)
         {
-            var usuario = db.Usuarios.Find(id);
+            var usuario = _db.Usuarios.Find(id);
             if (usuario == null)
             {
                 return NotFound();
@@ -72,8 +76,8 @@ namespace SiteCorretor.Areas.Admin.Controllers
                 try
                 {
                     usuario.Senha = md5.CalculateMD5Hash(usuario.Senha);
-                    db.Entry(usuario).State = EntityState.Modified;
-                    db.SaveChanges();
+                    _db.Entry(usuario).State = EntityState.Modified;
+                    _db.SaveChanges();
                 }   
                 catch (DbUpdateConcurrencyException)
                 {
@@ -87,7 +91,7 @@ namespace SiteCorretor.Areas.Admin.Controllers
         // GET: Usuario/Delete/5
         public IActionResult Delete(int id)
         {
-            var usuario = db.Usuarios.Find(id);
+            var usuario = _db.Usuarios.Find(id);
             if (usuario == null)
             {
                 return NotFound();
@@ -101,8 +105,8 @@ namespace SiteCorretor.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var usuario = db.Usuarios.Find(id);
-            db.Usuarios.Remove(usuario);
+            var usuario = _db.Usuarios.Find(id);
+            _db.Usuarios.Remove(usuario);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -1,0 +1,61 @@
+﻿
+@model IEnumerable<SiteCorretor.Models.Usuario>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Usuários</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="tableResidencia" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary"}) |
+                    <input id="Delete" type="button" class="btn btn-danger"value="Delete" onclick="deleteitem(@item.ID)"/> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script>
+    function deleteitem(id){
+        if (confirm('Quer mesmo deletar este item?')) {
+            $.ajax({
+            url: '/admin/residencia/delete',
+            type: 'DELETE',
+            data: {"ID" : id},
+            success: function() {   
+                location.reload();}
+            });
+        }
+    }   
+    </script>
+}
+    
+

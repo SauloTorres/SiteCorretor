@@ -4,10 +4,10 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Residencias</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -16,6 +16,7 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Value)
@@ -45,11 +46,29 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Image)
                 </td>
+                    @Html.HiddenFor(modelItem => item.Id)
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary"}) |
+                    <input id="Delete" type="button" class="btn btn-danger"value="Delete" onclick="deleteitem(@item.Id)"/> 
                 </td>
             </tr>
         }
     </tbody>
 </table>
+@section scripts {
+    <script>
+    function deleteitem(id){
+        if (confirm('Quer mesmo deletar este item?')) {
+            $.ajax({
+            url: '/admin/residencia/delete',
+            type: 'DELETE',
+            data: {"id" : id},
+            success: function() {   
+                location.reload();}
+            });
+        }
+    }   
+    </script>
+}
+    
+
