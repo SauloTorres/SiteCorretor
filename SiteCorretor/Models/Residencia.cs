@@ -24,5 +24,12 @@ namespace SiteCorretor.Models
 
         [Display(Name = "Imagem")]
         public string Image { get; set; }
+
+        [Required]
+        [Display(Name = "Slug")]
+        [MaxLength(10, ErrorMessage = "Slug muito grande")]
+        public string Slug { get; set; }
+
+        public virtual IEnumerable<VisitResidencia> VisitResidencias { get; set; }
     }
 }

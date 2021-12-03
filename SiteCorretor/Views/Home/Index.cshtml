@@ -1,10 +1,94 @@
-﻿@{
+﻿@model IEnumerable<SiteCorretor.Models.Residencia>
+@{
     ViewData["Title"] = "Home Page";
-
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="section-intro  text-center">
+    <div class="container">
+        <h3 class="wp wp-1">Escolha onde você quer morar</h3>
+        <p class="lead wp wp-2" style="font-size: 0.8rem;">Selecione o bairro que você sonha viver com a sua família e conheça todos detalhes do empreendimento. O seu apartamento está te esperando!</p>
+    </div>
+</section>
+
+<section class="section-features text-center">
+    <div class="container">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                 <div class="carousel-inner">
+                     <div class="carousel-item active">
+                    @{
+                        int qtd = Model.Count();                        
+                        int skip = 3;
+                        int pages;
+                        if(qtd%skip == 0)
+                        {
+                             pages = (qtd / skip) - 1;
+                        }
+                        else
+                        {                       
+                             pages = (qtd / skip);
+                        }                       
+                    }
+                    <div class="row">
+            @foreach(var item in Model.Take(3))
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card h-100" style="width: 100%;">
+                  <img style="height:248px;" class="card-img-top" src="~/itens/@item.Image" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">@item.Description</p>
+                    <p class="card-text value">R$ @item.Value</p>                            
+                  </div>
+                  <div>
+                    <a href="#" class="btn btn-primary btn-foto mb-5">Mais fotos</a>
+                    </div>
+                </div>
+                </div>
+            }
+        </div>
+        </div>
+        @for(int z = 1; z<=pages; z++){
+        <div class="carousel-item">
+                    <div class="row">
+                @foreach(var item in Model.Skip(skip).Take(3))
+                {
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100" style="width: 100%;">
+                            <img style="height:248px;" class="card-img-top" src="~/itens/@item.Image" alt="Card image cap"/>
+                      <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-text value">R$ @item.Value</p>                            
+                      </div>
+                      <div>
+                        <a href="#" class="btn btn-primary btn-foto mb-5">Mais fotos</a>
+                        </div>
+                    </div>
+                </div>
+                }
+            
+        </div>
+        </div>
+        {skip+= 3;}
+        }
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  </div>
+</section>
+
+
+
+@section scripts {
+
+    
+}

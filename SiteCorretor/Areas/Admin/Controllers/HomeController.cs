@@ -72,6 +72,7 @@ namespace SiteCorretor.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.TotalResidencias = _db.Residencias.Count();
             return View();
         }
     }

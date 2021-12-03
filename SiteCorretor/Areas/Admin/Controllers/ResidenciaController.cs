@@ -40,15 +40,13 @@ namespace SiteCorretor.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
-                _db.Add(residencia);
-                _db.SaveChanges();
+                
 
                 string root = _appEnvironment.WebRootPath;
-                string pathString = @"" + root + "\\itens\\Resid_" + residencia.Id;
+                string pathString = @"" + root + "\\itens\\Resid_" + residencia.Slug;
                 Directory.CreateDirectory(pathString);
 
-                residencia.Image = pathString;
-
+                
 
                 foreach (var item in file)
                 {
@@ -58,7 +56,13 @@ namespace SiteCorretor.Areas.Admin.Controllers
                     {
                         item.CopyToAsync(stream);
                     }
-                }                
+                    residencia.Image = $"Resid_{residencia.Slug}//{item.FileName}";
+                }
+
+                
+                _db.Add(residencia);
+                _db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(residencia);

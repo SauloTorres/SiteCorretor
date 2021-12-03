@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SiteCorretor.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,16 @@ namespace SiteCorretor.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private readonly SiteCorretorDbContext _db;
+        public HomeController(SiteCorretorDbContext db)
         {
-            return View();
+            _db = db;
+        }
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View(_db.Residencias.ToList());
         }
 
         public ActionResult About()
