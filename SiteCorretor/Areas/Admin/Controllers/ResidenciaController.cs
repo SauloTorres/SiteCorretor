@@ -25,7 +25,9 @@ namespace SiteCorretor.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_db.Residencias.ToList());
+            return View(_db.Residencias
+                .Include(x=> x.VisitResidencias)
+                .ToList());
         }
 
         [HttpGet]
@@ -90,7 +92,7 @@ namespace SiteCorretor.Areas.Admin.Controllers
                     _db.SaveChanges();
                     RedirectToAction("Index");
                 }
-                catch (System.Exception e)
+                catch (Exception e)
                 {
                     throw e;
                 }
@@ -109,6 +111,22 @@ namespace SiteCorretor.Areas.Admin.Controllers
             _db.SaveChanges();
 
             return View(residencia);
+        }
+        
+        public JsonResult RetornarListaResidencias()
+        {
+            List<int> qtdVisita = new List<int>();
+            List<string> titleVisita = new List<string>();
+
+            var residencias = _db.Residencias.Include(x => x.VisitResidencias).ToList();
+
+            foreach (var item in residencias)
+            {
+                qtdVisita.Add(item.VisitResidencias.Count());
+            }
+
+            var dados = new { residencias, qtdVisita };
+            return Json(dados);
         }
     }
 }

@@ -8,13 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 
 namespace SiteCorretor.Areas.Admin.Controllers
 {
@@ -73,7 +69,10 @@ namespace SiteCorretor.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ViewBag.TotalResidencias = _db.Residencias.Count();
+            ViewBag.TotalVisitas = _db.VisitResidencia.Count();
             return View();
         }
+
+
     }
 }

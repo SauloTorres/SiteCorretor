@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace SiteCorretor.Models
 
         [Display(Name = "Valor")]
         [Required]
-        public decimal Value { get; set; }
+        public int Value { get; set; }
 
         [Display(Name = "Descrição")]
         [Required]
@@ -25,11 +26,15 @@ namespace SiteCorretor.Models
         [Display(Name = "Imagem")]
         public string Image { get; set; }
 
+        [Display(Name = "Instagram Url")]
+        public string InstagramUrl { get; set; }
+
         [Required]
         [Display(Name = "Slug")]
-        [MaxLength(10, ErrorMessage = "Slug muito grande")]
+        [MaxLength(20, ErrorMessage = "Slug muito grande")]
         public string Slug { get; set; }
 
         public virtual IEnumerable<VisitResidencia> VisitResidencias { get; set; }
+
     }
 }

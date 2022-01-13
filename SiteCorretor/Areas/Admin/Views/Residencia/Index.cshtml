@@ -27,27 +27,33 @@
             <th>
                 @Html.DisplayNameFor(model => model.Image)
             </th>
+            <th style="text-align:center">
+                Visitas
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
+            var total = item.VisitResidencias.Where(x => x.ResidenciaId == item.Id).Count(); 
             <tr>
-                <td>
+                <td class="col-md-2 col-lg-2 col-2">
                     @Html.DisplayFor(modelItem => item.Title)
-                </td>
+                </td class="col-md-2 col-lg-2 col-2">
                 <td>
                     @Html.DisplayFor(modelItem => item.Value)
                 </td>
-                <td>
+                <td class="col-md-4 col-lg-4 col-4">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>
+                <td class="col-md-1 col-lg-1 col-1" style="font-size: 14px">
                     @Html.DisplayFor(modelItem => item.Image)
                 </td>
-                    @Html.HiddenFor(modelItem => item.Id)
-                <td>
+                <td class="col-md-1 col-lg-1 col-1" style="text-align:center">
+                    @total
+                </td>
+                <td class="col-md-2 col-lg-2 col-2">
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary"}) |
                     <input id="Delete" type="button" class="btn btn-danger"value="Delete" onclick="deleteitem(@item.Id)"/> 
                 </td>

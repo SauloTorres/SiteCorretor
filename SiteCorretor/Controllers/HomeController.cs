@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SiteCorretor.Data;
+using SiteCorretor.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,18 +22,22 @@ namespace SiteCorretor.Controllers
             return View(_db.Residencias.ToList());
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public IActionResult Indexteste()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View(_db.Residencias.ToList());
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
+        [HttpPost]
+        public void VisitaResidencia(VisitResidencia visit)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.VisitResidencia.Add(visit);
+                _db.SaveChanges();
+            }
         }
+
     }
 }

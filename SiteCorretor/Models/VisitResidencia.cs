@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SiteCorretor.Models
 {
+    [Display(Name = "Visitas")]
     public class VisitResidencia
     {
         [Key]
@@ -13,7 +14,7 @@ namespace SiteCorretor.Models
 
         public int ResidenciaId { get; set; }
 
-        public DateTime Data { get; set; }
+        public DateTime Data { get; set; } = DateTime.Now;
 
         public virtual Residencia Residencia { get; set; }
     }

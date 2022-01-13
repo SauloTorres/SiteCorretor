@@ -12,10 +12,70 @@ a {
   color: #0366d6;
 }
 
+.jumbotron {
+    background-size: cover;
+    height: 450px;
+    position: relative;
+    z-index: 1;
+}
+    .jumbotron img {
+        padding-left: 10px;
+    }
+
+    .jumbotron .container h1 {
+        padding-top: 80px;
+        color: white;
+    }
+
+    .jumbotron li {
+        display: inline;
+        list-style: none;
+        margin-left: 40px;
+    }
+
+    .jumbotron a {
+        font-size: 15px;
+    }
+
+        .jumbotron a:hover {
+            color: white;
+        }
+
+    .jumbotron .btn {
+        background-color: #ff003d;
+        color: white;
+        border-radius: 0;
+        border-color: #ff003d;
+        padding: 7px 30px;
+    }
+
+        .jumbotron .btn:hover {
+            color: inherit;
+        }
+
+    .jumbotron .download {
+        margin-top: 20px;
+    }
+
+
+
+    .jumbotron .bg {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #39f url("banner2.jpg") center center;
+        opacity: .5;
+        width: 100%;
+        height: 100%;
+    }
+
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -61,8 +121,8 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color: #8BC6EC;
-    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+    background-color: #f4f5f7;
+    /*background-image: linear-gradient(135deg, #9599E2 0%, #8BC6EC 100%);*/
 }
 .footer {
     position: absolute;
@@ -117,3 +177,43 @@ body {
     height: auto;
 }
 
+
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+    margin-top: 10%;
+    padding:30px;
+    margin-block: 10%;
+}
+
+.profile-user-img {
+    border: 3px solid #adb5bd;
+    margin: 0 auto;
+    padding: 3px;
+    width: 100px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.owl-prev {
+    left: -30px;
+    padding-right: 20px;
+}
+
+.owl-next {
+    right: -30px;
+    padding-left: 20px;
+}
+
+.owl-prev span, .owl-next span {
+    font-size: 60px;
+    color: #787878;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.owl-theme .owl-nav [class*="owl-"]:hover{
+    background-color : transparent;
+}

@@ -15,6 +15,7 @@ namespace SiteCorretor.Data
         }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Residencia> Residencias { get; set; }
+        public DbSet<VisitResidencia> VisitResidencia { get; set; }
 
 
     }

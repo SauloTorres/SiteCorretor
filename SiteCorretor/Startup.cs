@@ -29,7 +29,8 @@ namespace SiteCorretor
             services.AddControllers();
 
             services.AddControllersWithViews()
-            .AddRazorRuntimeCompilation();
+            .AddRazorRuntimeCompilation()
+            .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
